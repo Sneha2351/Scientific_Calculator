@@ -103,7 +103,7 @@
                     <Button
                         android:id="@+id/bpi"
                         android:text="∏"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textSize="30sp"
                         android:background="#000000"
                         android:textColor="#ffa500"

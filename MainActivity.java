@@ -10,8 +10,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     Button b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bdot,bpi,bplus,bminus,bmult,bdiv,bmod,bsin,bcos,btan,blog,bln,bb1,bb2,bequal,bpower,bsqrt,bac,bc,bfact,binv;
     TextView tvmain, tvsec;
-    double val, val1;
-    boolean Add, sub, mult, div, mod;
+    Float val, val1;
+    boolean Add, Sub, Mult, Div, Mod;
     Double pi = 3.14159265;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tvmain == null)
                     tvmain.setText(" ");
                 else {
-                    val = Double.parseDouble( tvmain.getText() + " ");
+                    val = Float.parseFloat(tvmain.getText() + "");
                     Add = true;
                     tvmain.setText("+");
                 }
@@ -150,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 if (tvmain == null)
                     tvmain.setText(" ");
                 else {
-                    val = Double.parseDouble(tvmain.getText() + " ");
-                    sub = true;
-                    tvmain.setText("-");
+                    val = Float.parseFloat(tvmain.getText() + "");
+                    Sub = true;
+                    tvmain.setText("");
                 }
             }
         });
@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
                 if (tvmain == null)
                     tvmain.setText(" ");
                 else {
-                    val = Double.parseDouble(tvmain.getText() + " ");
-                    mult = true;
-                    tvmain.setText("x");
+                    val = Float.parseFloat(tvmain.getText() + "");
+                    Mult = true;
+                    tvmain.setText("");
                 }
             }
         });
@@ -174,9 +174,9 @@ public class MainActivity extends AppCompatActivity {
                 if (tvmain == null)
                     tvmain.setText(" ");
                 else {
-                    val = Double.parseDouble(tvmain.getText() + " ");
-                    div = true;
-                    tvmain.setText("÷");
+                    val = Float.parseFloat(tvmain.getText() + "");
+                    Div = true;
+                    tvmain.setText("");
                 }
             }
         });
@@ -186,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 if (tvmain == null)
                     tvmain.setText(" ");
                 else {
-                    val = Double.parseDouble(tvmain.getText() + " ");
-                    mod = true;
-                    tvmain.setText("%");
+                    val = Float.parseFloat(tvmain.getText() + "");
+                    Mod = true;
+                    tvmain.setText("");
                 }
             }
         });
@@ -197,7 +197,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String val = tvmain.getText().toString();
                 double r = Math.sqrt(Double.parseDouble(val));
-                tvmain.setText(String.valueOf(r));
+                tvmain.setText("√" + tvmain.getText());
+                tvsec.setText(String.valueOf(r));
             }
         });
         bb1.setOnClickListener(new View.OnClickListener() {
@@ -253,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 double d = Double.parseDouble(tvmain.getText().toString());
                 double r = 1/d;
-                tvmain.setText(tvmain.getText() + "^" + (-1));
+                tvmain.setText("1/" + tvmain.getText());
                 tvmain.setText(tvmain.getText());
                 tvsec.setText(String.valueOf(r));
             }
@@ -298,30 +299,31 @@ public class MainActivity extends AppCompatActivity {
         bequal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val1 = Double.parseDouble(tvmain.getText() + " ");
+                val1 = Float.parseFloat(tvmain.getText() + " ");
                 if (Add == true){
-                    tvsec.setText( val + val1 + "");
+                    tvmain.setText(val + "+" + val1);
+                    tvsec.setText(val + val1 + "");
                     Add = false;
                 }
-                else
-                if (sub == true){
+                else if (Sub == true){
+                    tvmain.setText(val + "-" + val1);
                     tvsec.setText(val - val1 + "");
-                    sub = false;
+                    Sub = false;
                 }
-                else
-                if (mult == true){
-                    tvsec.setText(val * val1 + " ");
-                    mult = false;
+                else if (Mult == true){
+                    tvmain.setText(val + "x" + val1);
+                    tvsec.setText(val * val1 + "");
+                    Mult = false;
                 }
-                else
-                if (div == true){
-                    tvsec.setText(val / val1 + " ");
-                    div = false;
+                else if (Div == true){
+                    tvmain.setText(val + "÷" + val1);
+                    tvsec.setText(val / val1 + "");
+                    Div = false;
                 }
-                else
-                if (mod == true){
-                    tvsec.setText(val % val1 + " ");
-                    mod = false;
+                else if (Mod == true){
+                    tvmain.setText(val + "%" + val1);
+                    tvsec.setText(val % val1 + "");
+                    Mod = false;
                 }
             }
         });
